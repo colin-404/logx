@@ -29,34 +29,25 @@ type Loger struct {
 	lvl      int
 }
 
-func NewLoger(opts ...interface{}) *Loger {
-	var (
-		opt     interface{}
-		options *Options
-	)
-
-	options = &Options{}
-	for _, opt = range opts {
-		opt.(Option)(options)
-	}
+func NewLoger(opts *Options) *Loger {
 
 	logFile := defaultLogFile
-	if options.LogFile != "" {
-		logFile = options.LogFile
+	if opts.LogFile != "" {
+		logFile = opts.LogFile
 	}
 	maxSize := defaultMaxSize
-	if options.MaxSize != 0 {
-		maxSize = options.MaxSize
+	if opts.MaxSize != 0 {
+		maxSize = opts.MaxSize
 	}
 	maxAge := defaultMaxAge
-	if options.MaxAge != 0 {
-		maxAge = options.MaxAge
+	if opts.MaxAge != 0 {
+		maxAge = opts.MaxAge
 	}
 	maxBackups := defaultMaxBackups
-	if options.MaxSize != 0 {
-		maxBackups = options.MaxBackups
+	if opts.MaxSize != 0 {
+		maxBackups = opts.MaxBackups
 	}
-	logLevel := options.Level
+	logLevel := opts.Level
 
 	hook := &lumberjack.Logger{
 		Filename:   logFile,
@@ -67,11 +58,16 @@ func NewLoger(opts ...interface{}) *Loger {
 		Compress:   false,
 	}
 
-	core := zapcore.NewCore(zapcore.NewJSONEncoder(zap.NewProductionEncoderConfig()),
+	encoderConfig := zap.NewProductionEncoderConfig()
+	encoderConfig.EncodeCaller = zapcore.ShortCallerEncoder
+	encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
+	core := zapcore.NewCore(zapcore.NewJSONEncoder(encoderConfig),
 		zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout),
 			zapcore.AddSync(hook)),
 		zapcore.Level(logLevel))
-	return &Loger{provider: zap.New(core), lvl: logLevel}
+	// return &Loger{provider: zap.New(core), lvl: logLevel}
+	logger := zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1))
+	return &Loger{provider: logger, lvl: logLevel}
 }
 
 func (l *Loger) SetMsg(msg string) {

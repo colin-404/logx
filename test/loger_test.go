@@ -1,9 +1,12 @@
-# logx
+package test
 
-封装了Zap和lumberjack的日志库
+import (
+	"testing"
 
+	"github.com/colin-404/loger"
+)
 
-```
+func TestLoger(t *testing.T) {
 	logOpts := &loger.Options{
 		//log path 日志文件路径
 		LogFile: "logs/test.log",
@@ -18,10 +21,4 @@
 	loger.InitLogger(logger)
 
 	loger.Infof("test", "test")
-
-```
-
-日志格式
-```
-{"level":"info","ts":"2025-05-04T10:55:41.093+0800","caller":"test/loger_test.go:23","msg":"test","info":"test"}
-```
+}

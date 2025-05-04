@@ -1,4 +1,4 @@
-package loger
+package logx
 
 type Options struct {
 	LogFile    string

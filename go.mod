@@ -1,4 +1,4 @@
-module github.com/colin-404/loger
+module github.com/colin-404/logx
 
 go 1.19
 
