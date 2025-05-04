@@ -1,6 +1,7 @@
 package test
 
 import (
+	"errors"
 	"testing"
 
 	"github.com/colin-404/logx"
@@ -20,5 +21,11 @@ func TestLoger(t *testing.T) {
 	loger := logx.NewLoger(logOpts)
 	logx.InitLogger(loger)
 
-	logx.Infof("logx", "test")
+	err := errors.New("error")
+
+	// info
+	logx.Infof("logx: %v", err)
+
+	// add msg to info log
+	logx.Infomf("logx", "test: %v", err)
 }

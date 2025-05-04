@@ -116,7 +116,18 @@ func Warnf(msg string, format string, v ...interface{}) {
 	}
 }
 
-func Infof(msg string, format string, v ...interface{}) {
+func Infof(format string, v ...interface{}) {
+	if defaultLogger == nil {
+		fmt.Printf(format+"\n", v...)
+		return
+	}
+	if defaultLogger.lvl <= InfoLevel {
+		defaultLogger.provider.Info(fmt.Sprintf(format, v...))
+	}
+}
+
+// add msg to log
+func Infomf(msg string, format string, v ...interface{}) {
 	if defaultLogger == nil {
 		fmt.Printf(format+"\n", v...)
 		return
