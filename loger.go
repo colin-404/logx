@@ -86,7 +86,18 @@ func (l *Loger) Println(v ...interface{}) {
 	l.provider.Info(l.msg, zap.Any("info", v))
 }
 
-func Fatalf(msg string, format string, v ...interface{}) {
+func Fatalf(msg string, v ...interface{}) {
+	if defaultLogger == nil {
+		fmt.Printf(msg+"\n", v...)
+		return
+	}
+	if defaultLogger.lvl <= FatalLevel {
+		// defaultLogger.provider.Fatal(msg, zap.String("info", fmt.Sprintf(format, v...)))
+		defaultLogger.provider.Fatal(fmt.Sprintf(msg, v...))
+	}
+}
+
+func Fatalmf(msg string, format string, v ...interface{}) {
 	if defaultLogger == nil {
 		fmt.Printf(format+"\n", v...)
 		return
@@ -96,7 +107,17 @@ func Fatalf(msg string, format string, v ...interface{}) {
 	}
 }
 
-func Errorf(msg string, format string, v ...interface{}) {
+func Errorf(msg string, v ...interface{}) {
+	if defaultLogger == nil {
+		fmt.Printf(msg+"\n", v...)
+		return
+	}
+	if defaultLogger.lvl <= ErrorLevel {
+		defaultLogger.provider.Error(fmt.Sprintf(msg, v...))
+	}
+}
+
+func Errormf(msg string, format string, v ...interface{}) {
 	if defaultLogger == nil {
 		fmt.Printf(format+"\n", v...)
 		return
@@ -106,7 +127,17 @@ func Errorf(msg string, format string, v ...interface{}) {
 	}
 }
 
-func Warnf(msg string, format string, v ...interface{}) {
+func Warnf(msg string, v ...interface{}) {
+	if defaultLogger == nil {
+		fmt.Printf(msg+"\n", v...)
+		return
+	}
+	if defaultLogger.lvl <= WarnLevel {
+		defaultLogger.provider.Warn(fmt.Sprintf(msg, v...))
+	}
+}
+
+func Warnmf(msg string, format string, v ...interface{}) {
 	if defaultLogger == nil {
 		fmt.Printf(format+"\n", v...)
 		return
@@ -116,13 +147,13 @@ func Warnf(msg string, format string, v ...interface{}) {
 	}
 }
 
-func Infof(format string, v ...interface{}) {
+func Infof(msg string, v ...interface{}) {
 	if defaultLogger == nil {
-		fmt.Printf(format+"\n", v...)
+		fmt.Printf(msg+"\n", v...)
 		return
 	}
 	if defaultLogger.lvl <= InfoLevel {
-		defaultLogger.provider.Info(fmt.Sprintf(format, v...))
+		defaultLogger.provider.Info(fmt.Sprintf(msg, v...))
 	}
 }
 
@@ -137,7 +168,17 @@ func Infomf(msg string, format string, v ...interface{}) {
 	}
 }
 
-func Debugf(msg string, format string, v ...interface{}) {
+func Debugf(msg string, v ...interface{}) {
+	if defaultLogger == nil {
+		fmt.Printf(msg+"\n", v...)
+		return
+	}
+	if defaultLogger.lvl <= DebugLevel {
+		defaultLogger.provider.Debug(fmt.Sprintf(msg, v...))
+	}
+}
+
+func Debugmf(msg string, format string, v ...interface{}) {
 	if defaultLogger == nil {
 		fmt.Printf(format+"\n", v...)
 		return
