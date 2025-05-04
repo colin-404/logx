@@ -1,2 +1,3 @@
 {"level":"info","ts":1746326770.3639436,"msg":"test","info":"test"}
 {"level":"info","ts":"2025-05-04T10:55:41.093+0800","caller":"test/loger_test.go:23","msg":"test","info":"test"}
+{"level":"info","ts":"2025-05-04T11:02:15.248+0800","caller":"test/loger_test.go:23","msg":"logx","info":"test"}

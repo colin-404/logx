@@ -3,11 +3,11 @@ package test
 import (
 	"testing"
 
-	"github.com/colin-404/loger"
+	"github.com/colin-404/logx"
 )
 
 func TestLoger(t *testing.T) {
-	logOpts := &loger.Options{
+	logOpts := &logx.Options{
 		//log path 日志文件路径
 		LogFile: "logs/test.log",
 		//log size 日志文件大小，单位：MB
@@ -17,8 +17,8 @@ func TestLoger(t *testing.T) {
 		//log backups 日志文件备份数量
 		MaxBackups: 10,
 	}
-	logger := loger.NewLoger(logOpts)
-	loger.InitLogger(logger)
+	loger := logx.NewLoger(logOpts)
+	logx.InitLogger(loger)
 
-	loger.Infof("test", "test")
+	logx.Infof("logx", "test")
 }
