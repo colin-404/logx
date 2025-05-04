@@ -7,6 +7,7 @@ type Options struct {
 	MaxBackups int
 	TimeFormat string
 	Level      int
+	Caller     *bool
 }
 
 const (

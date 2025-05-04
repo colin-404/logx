@@ -15,6 +15,7 @@ const (
 	defaultMaxAge     = 3
 	defaultMaxBackups = 3
 	defaultTimeFormat = "EpochNanos"
+	defaultCaller     = true
 )
 
 // TimeFormatsStruct provides constants as struct fields for easier access.
@@ -72,6 +73,18 @@ func NewLoger(opts *Options) *Loger {
 		opts.TimeFormat = defaultTimeFormat
 	}
 
+	// Handle default for Caller pointer
+	if opts.Caller == nil {
+		callerDefault := defaultCaller // Create a local variable
+		opts.Caller = &callerDefault   // Take address of the variable
+	}
+
+	// Determine the effective caller setting
+	enableCaller := defaultCaller
+	if opts.Caller != nil {
+		enableCaller = *opts.Caller
+	}
+
 	hook := &lumberjack.Logger{
 		Filename:   logFile,
 		MaxSize:    maxSize,
@@ -82,7 +95,13 @@ func NewLoger(opts *Options) *Loger {
 	}
 
 	encoderConfig := zap.NewProductionEncoderConfig()
-	encoderConfig.EncodeCaller = zapcore.ShortCallerEncoder
+
+	// caller 是否显示调用者
+	if enableCaller { // Use the effective setting
+		encoderConfig.EncodeCaller = zapcore.ShortCallerEncoder
+		encoderConfig.CallerKey = "source"
+	}
+	encoderConfig.TimeKey = "timestamp"
 
 	// Determine the time encoder based on opts.TimeFormat
 	switch opts.TimeFormat {
@@ -102,8 +121,14 @@ func NewLoger(opts *Options) *Loger {
 		zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout),
 			zapcore.AddSync(hook)),
 		zapcore.Level(logLevel))
-	// return &Loger{provider: zap.New(core), lvl: logLevel}
-	logger := zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1))
+
+	// Conditionally add caller options to zap.New
+	var zapOptions []zap.Option
+	if enableCaller {
+		zapOptions = append(zapOptions, zap.AddCaller(), zap.AddCallerSkip(1))
+	}
+
+	logger := zap.New(core, zapOptions...)
 	return &Loger{provider: logger, lvl: logLevel}
 }
 
