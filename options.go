@@ -5,6 +5,7 @@ type Options struct {
 	MaxSize    int
 	MaxAge     int
 	MaxBackups int
+	TimeFormat string
 	Level      int
 }
 

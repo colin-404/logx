@@ -14,7 +14,26 @@ const (
 	defaultMaxSize    = 5
 	defaultMaxAge     = 3
 	defaultMaxBackups = 3
+	defaultTimeFormat = "EpochNanos"
 )
+
+// TimeFormatsStruct provides constants as struct fields for easier access.
+type timeFormatContainer struct {
+	ISO8601     string
+	RFC3339     string
+	EpochMillis string
+	EpochNanos  string
+	Epoch       string
+}
+
+// TimeFormats is an instance of the container holding the format constants.
+var TimeFormats = timeFormatContainer{
+	ISO8601:     "ISO8601",
+	RFC3339:     "RFC3339",
+	EpochMillis: "EpochMillis",
+	EpochNanos:  "EpochNanos",
+	Epoch:       "Epoch",
+}
 
 var defaultLogger *Loger
 
@@ -49,6 +68,10 @@ func NewLoger(opts *Options) *Loger {
 	}
 	logLevel := opts.Level
 
+	if opts.TimeFormat == "" {
+		opts.TimeFormat = defaultTimeFormat
+	}
+
 	hook := &lumberjack.Logger{
 		Filename:   logFile,
 		MaxSize:    maxSize,
@@ -60,7 +83,21 @@ func NewLoger(opts *Options) *Loger {
 
 	encoderConfig := zap.NewProductionEncoderConfig()
 	encoderConfig.EncodeCaller = zapcore.ShortCallerEncoder
-	encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
+
+	// Determine the time encoder based on opts.TimeFormat
+	switch opts.TimeFormat {
+	case "ISO8601":
+		encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
+	case "RFC3339":
+		encoderConfig.EncodeTime = zapcore.RFC3339TimeEncoder
+	case "EpochMillis":
+		encoderConfig.EncodeTime = zapcore.EpochMillisTimeEncoder
+	case "EpochNanos":
+		encoderConfig.EncodeTime = zapcore.EpochNanosTimeEncoder
+	case "Epoch":
+		encoderConfig.EncodeTime = zapcore.EpochTimeEncoder
+	}
+
 	core := zapcore.NewCore(zapcore.NewJSONEncoder(encoderConfig),
 		zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout),
 			zapcore.AddSync(hook)),
