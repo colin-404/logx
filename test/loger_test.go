@@ -8,6 +8,7 @@ import (
 )
 
 func TestLoger(t *testing.T) {
+	// callerset := false
 	logOpts := &logx.Options{
 		//log path 日志文件路径,默认：./default.log
 		LogFile: "logs/test.log",

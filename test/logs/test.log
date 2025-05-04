@@ -17,3 +17,17 @@
 {"level":"info","ts":1746334529.5033462,"caller":"test/loger_test.go:31","msg":"logx","info":"test: error"}
 {"level":"info","ts":1746334560832477499,"caller":"test/loger_test.go:28","msg":"logx: error"}
 {"level":"info","ts":1746334560832745842,"caller":"test/loger_test.go:31","msg":"logx","info":"test: error"}
+{"level":"info","timestamp":1746345512101617601,"source":"test/loger_test.go:30","msg":"logx: error"}
+{"level":"info","timestamp":1746345512102019888,"source":"test/loger_test.go:33","msg":"logx","info":"test: error"}
+{"level":"info","timestamp":1746346084671736059,"source":"test/loger_test.go:30","msg":"logx: error"}
+{"level":"info","timestamp":1746346084672035037,"source":"test/loger_test.go:33","msg":"logx","info":"test: error"}
+{"level":"info","timestamp":1746346167459848263,"caller":"test/loger_test.go:33","msg":"logx: error"}
+{"level":"info","timestamp":1746346167459944330,"caller":"test/loger_test.go:36","msg":"logx","info":"test: error"}
+{"level":"info","timestamp":1746346184562192085,"caller":"test/loger_test.go:33","msg":"logx: error"}
+{"level":"info","timestamp":1746346184562327150,"caller":"test/loger_test.go:36","msg":"logx","info":"test: error"}
+{"level":"info","timestamp":1746346238180963145,"msg":"logx: error"}
+{"level":"info","timestamp":1746346238181061659,"msg":"logx","info":"test: error"}
+{"level":"info","timestamp":1746346279274773614,"source":"test/loger_test.go:33","msg":"logx: error"}
+{"level":"info","timestamp":1746346279274857679,"source":"test/loger_test.go:36","msg":"logx","info":"test: error"}
+{"level":"info","timestamp":1746346294432088246,"source":"test/loger_test.go:31","msg":"logx: error"}
+{"level":"info","timestamp":1746346294432178440,"source":"test/loger_test.go:34","msg":"logx","info":"test: error"}
