@@ -209,6 +209,16 @@ func Warnmf(msg string, format string, v ...interface{}) {
 	}
 }
 
+func Info(v interface{}) {
+	if defaultLogger == nil {
+		fmt.Printf("%v"+"\n", v)
+		return
+	}
+	if defaultLogger.lvl <= InfoLevel {
+		defaultLogger.provider.Info(fmt.Sprintf("%v", v))
+	}
+}
+
 func Infof(msg string, v ...interface{}) {
 	if defaultLogger == nil {
 		fmt.Printf(msg+"\n", v...)
@@ -227,6 +237,16 @@ func Infomf(msg string, format string, v ...interface{}) {
 	}
 	if defaultLogger.lvl <= InfoLevel {
 		defaultLogger.provider.Info(msg, zap.String("info", fmt.Sprintf(format, v...)))
+	}
+}
+
+func Debug(v interface{}) {
+	if defaultLogger == nil {
+		fmt.Printf("%v"+"\n", v)
+		return
+	}
+	if defaultLogger.lvl <= DebugLevel {
+		defaultLogger.provider.Debug(fmt.Sprintf("%v", v))
 	}
 }
 

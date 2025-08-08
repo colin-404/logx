@@ -20,7 +20,7 @@ func TestLoger(t *testing.T) {
 		MaxBackups: 10,
 
 		//time format 日志时间格式,默认：EpochNanos
-		TimeFormat: logx.TimeFormats.EpochNanos,
+		TimeFormat: logx.TimeFormats.RFC3339,
 	}
 	loger := logx.NewLoger(logOpts)
 	logx.InitLogger(loger)
@@ -28,8 +28,14 @@ func TestLoger(t *testing.T) {
 	err := errors.New("error")
 
 	// info
-	logx.Infof("logx: %v", err)
+	logx.Info("info")
+
+	// infof
+	logx.Infof("infof: %v", err)
 
 	// add msg to info log
-	logx.Infomf("logx", "test: %v", err)
+	logx.Infomf("infomf", "test: %v", err)
+
+	//debug
+	logx.Debug("debug")
 }

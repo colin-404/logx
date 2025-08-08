@@ -31,3 +31,18 @@
 {"level":"info","timestamp":1746346279274857679,"source":"test/loger_test.go:36","msg":"logx","info":"test: error"}
 {"level":"info","timestamp":1746346294432088246,"source":"test/loger_test.go:31","msg":"logx: error"}
 {"level":"info","timestamp":1746346294432178440,"source":"test/loger_test.go:34","msg":"logx","info":"test: error"}
+{"level":"info","timestamp":1754650710072744244,"source":"test/loger_test.go:31","msg":"info"}
+{"level":"info","timestamp":1754650710072795199,"source":"test/loger_test.go:34","msg":"infof: error"}
+{"level":"info","timestamp":1754650710072808431,"source":"test/loger_test.go:37","msg":"infomf","info":"test: error"}
+{"level":"info","timestamp":"2025-08-08T18:59:16.981+0800","source":"test/loger_test.go:31","msg":"info"}
+{"level":"info","timestamp":"2025-08-08T18:59:16.981+0800","source":"test/loger_test.go:34","msg":"infof: error"}
+{"level":"info","timestamp":"2025-08-08T18:59:16.982+0800","source":"test/loger_test.go:37","msg":"infomf","info":"test: error"}
+{"level":"info","timestamp":"2025-08-08T18:59:25+08:00","source":"test/loger_test.go:31","msg":"info"}
+{"level":"info","timestamp":"2025-08-08T18:59:25+08:00","source":"test/loger_test.go:34","msg":"infof: error"}
+{"level":"info","timestamp":"2025-08-08T18:59:25+08:00","source":"test/loger_test.go:37","msg":"infomf","info":"test: error"}
+{"level":"info","timestamp":"2025-08-08T18:59:37.228+0800","source":"test/loger_test.go:31","msg":"info"}
+{"level":"info","timestamp":"2025-08-08T18:59:37.228+0800","source":"test/loger_test.go:34","msg":"infof: error"}
+{"level":"info","timestamp":"2025-08-08T18:59:37.228+0800","source":"test/loger_test.go:37","msg":"infomf","info":"test: error"}
+{"level":"info","timestamp":"2025-08-08T18:59:46+08:00","source":"test/loger_test.go:31","msg":"info"}
+{"level":"info","timestamp":"2025-08-08T18:59:46+08:00","source":"test/loger_test.go:34","msg":"infof: error"}
+{"level":"info","timestamp":"2025-08-08T18:59:46+08:00","source":"test/loger_test.go:37","msg":"infomf","info":"test: error"}
