@@ -12,10 +12,11 @@ import (
 const (
 	defaultLogFile    = "./default.log"
 	defaultMaxSize    = 5
-	defaultMaxAge     = 3
-	defaultMaxBackups = 3
-	defaultTimeFormat = "EpochNanos"
+	defaultMaxAge     = 30
+	defaultMaxBackups = 30
+	defaultTimeFormat = "RFC3339"
 	defaultCaller     = true
+	defaultLevel      = InfoLevel
 )
 
 // TimeFormatsStruct provides constants as struct fields for easier access.
@@ -67,20 +68,21 @@ func NewLoger(opts *Options) *Loger {
 	if opts.MaxSize != 0 {
 		maxBackups = opts.MaxBackups
 	}
-	logLevel := opts.Level
+	logLevel := defaultLevel
+	if opts.Level != 0 {
+		logLevel = opts.Level
+	}
 
 	if opts.TimeFormat == "" {
 		opts.TimeFormat = defaultTimeFormat
 	}
 
-	// Handle default for Caller pointer
-	if opts.Caller == nil {
-		callerDefault := defaultCaller // Create a local variable
-		opts.Caller = &callerDefault   // Take address of the variable
-	}
-
 	// Determine the effective caller setting
 	enableCaller := defaultCaller
+	//debug model, enable caller
+	if opts.Level == DebugLevel {
+		enableCaller = true
+	}
 	if opts.Caller != nil {
 		enableCaller = *opts.Caller
 	}
