@@ -1,0 +1,17 @@
+{"level":"info","timestamp":"2025-09-27T11:54:26+08:00","source":"test/loger_test.go:11","msg":"test inof no Init"}
+{"level":"info","timestamp":"2025-09-27T11:56:27+08:00","source":"test/loger_test.go:12","msg":"test println"}
+{"level":"info","timestamp":"2025-09-27T11:56:27+08:00","source":"test/loger_test.go:14","msg":"test inof no Init"}
+{"level":"info","timestamp":"2025-09-27T11:57:41+08:00","source":"test/loger_test.go:13","msg":"test println"}
+{"level":"info","timestamp":"2025-09-27T11:57:41+08:00","source":"test/loger_test.go:15","msg":"test inof no Init"}
+{"level":"info","timestamp":"2025-09-27T12:00:32+08:00","source":"test/loger_test.go:15","msg":"test inof no Init"}
+{"level":"info","timestamp":"2025-09-27T12:00:43+08:00","source":"test/loger_test.go:14","msg":"test inof no Init"}
+{"level":"info","timestamp":"2025-09-27T12:01:02+08:00","source":"test/loger_test.go:14","msg":"test info json"}
+{"level":"info","timestamp":"2025-09-27T12:01:26+08:00","source":"test/loger_test.go:15","msg":"test info json"}
+{"level":"info","timestamp":"2025-09-27T12:03:01+08:00","source":"test/loger_test.go:15","msg":"test info json"}
+{"level":"info","timestamp":"2025-09-27T12:11:41+08:00","source":"test/loger_test.go:15","msg":"test info json"}
+{"level":"info","timestamp":"2025-09-27T12:13:32+08:00","source":"test/loger_test.go:14","msg":"test info json"}
+{"level":"info","timestamp":"2025-09-27T12:14:52+08:00","source":"test/loger_test.go:15","msg":"test info json"}
+{"level":"info","timestamp":"2025-09-27T12:15:17+08:00","source":"test/loger_test.go:15","msg":"test info json"}
+{"level":"info","timestamp":"2025-09-27T12:16:03+08:00","source":"test/loger_test.go:15","msg":"test info json"}
+{"level":"info","timestamp":"2025-09-27T12:16:23+08:00","source":"test/loger_test.go:15","msg":"test info json"}
+{"level":"info","timestamp":"2025-09-27T12:18:58+08:00","source":"test/loger_test.go:15","msg":"test info json"}

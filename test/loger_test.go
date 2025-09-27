@@ -8,6 +8,12 @@ import (
 )
 
 func TestLoger(t *testing.T) {
+
+	logx.Println("test println")
+	logx.Printfln("test printf: %v", "test")
+	logx.Printf("test printf: %v", "test")
+	logx.Info("test info json")
+
 	// callerset := false
 	logOpts := &logx.Options{
 		//log path 日志文件路径,默认：./default.log
